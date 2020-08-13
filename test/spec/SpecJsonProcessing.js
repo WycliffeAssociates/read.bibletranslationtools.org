@@ -64,7 +64,7 @@ describe('Test Processing of Json files', function () {
             var project = {
                 commits: commits,
                 repo: "ar_eph_text_ulb",
-                repo_url: "https://https://git.door43.org/dummy/ar_eph_text_ulb",
+                repo_url: "https://https://content.bibletranslationtools.org/dummy/ar_eph_text_ulb",
                 user: "dummy"
             };
             return project;
