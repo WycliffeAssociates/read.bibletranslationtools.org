@@ -368,7 +368,7 @@ function getDcsLink(pathname) {
     return '';
 
   // the second and third parts are what we need
-  return 'https://git.door43.org/' + path_parts[1] + '/' + path_parts[2];
+  return 'https://content.bibletranslationtools.org/' + path_parts[1] + '/' + path_parts[2];
 }
 
 /**
@@ -380,7 +380,7 @@ function setDcsHref(location) {
   var href;
 
   if (myRepoName && myOwner)
-    href = 'https://git.door43.org/' + myOwner + '/' + myRepoName;
+    href = 'https://content.bibletranslationtools.org/' + myOwner + '/' + myRepoName;
   else
     href = getDcsLink(location.pathname);
 

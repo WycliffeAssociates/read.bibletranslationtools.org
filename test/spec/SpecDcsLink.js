@@ -6,7 +6,7 @@ describe('Test DCS Links', function () {
     var pathname = '/u/Door43/en_obs/ec7c9d9e8c/';
     var dcs_url = getDcsLink(pathname);
 
-    expect(dcs_url).toEqual('https://git.door43.org/Door43/en_obs');
+    expect(dcs_url).toEqual('https://content.bibletranslationtools.org/Door43/en_obs');
 
   });
 
@@ -41,7 +41,7 @@ describe('Test DCS Links', function () {
     //noinspection WithStatementJS
     with(localContext) {
       setDcsHref(window.location);
-      expect($see_on_dcs.attr('href')).toEqual('https://git.door43.org/Door43/en_obs');
+      expect($see_on_dcs.attr('href')).toEqual('https://content.bibletranslationtools.org/Door43/en_obs');
     }
   });
 
@@ -68,7 +68,7 @@ describe('Test DCS Links', function () {
     //noinspection WithStatementJS
     with(localContext) {
       setDcsHref(window.location);
-      expect($see_on_dcs.attr('href')).toEqual('https://git.door43.org/unit-tester/unit-test-repo');
+      expect($see_on_dcs.attr('href')).toEqual('https://content.bibletranslationtools.org/unit-tester/unit-test-repo');
     }
   });
 });
