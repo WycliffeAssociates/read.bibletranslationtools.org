@@ -1,22 +1,36 @@
 language: ruby
 rvm:
-- 2.2.2
-script: ./cibuild.sh
-env:
-  global:
-  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-sudo: false
-git:
-  depth: 10
-before_deploy: pip install --user s3cmd
+- 2.7.1
+before_install:
+  - gem install bundler
+install:
+  - bundle install
+script: 
+  - jekyll build
 deploy:
-- provider: script
-  skip_cleanup: true
-  script: ./s3_push.sh -b s3://dev-door43.org
-  on:
-    branch: develop
-- provider: script
-  skip_cleanup: true
-  script: ./s3_push.sh -b s3://door43.org
-  on:
-    branch: master
+  - provider: s3
+    access_key_id:
+      - secure: "fmJoTrT186uPYLwDzr2OzIqFVn94TPGBFzWVensUMzg1u3QqiFGgSfTSNmYqqLmnmiockBgfvnCAVjiVnxyyEdpwpX0IfbSoNbufxzG+iLYytjYRMZfJD0PUFNqmxm9briSdTWupkhfl6UgPbmBpjltMQtWa6qejHOJM9xXnxDe2gKZHEUovlwmKSIMlWUh2bHiU/y8tPoBWeZ6ftQoq0w2jGQjWz7wlrJ4621PkyVRbz7qBQ5J/HocIKD4aeeMqIDo55ZkPo0QzkMQTUC8aD2qV8h3HjzUbpE1Z03hTfQOZNaVKYNZtS41xOonjmfhuZF5A/hZ5BUQnHc3ESJ/RtzmXDhlhgab5HUr6FCvjHeMvisCaqkJfm8JNadYM+9AY++IsmrO5rzz85z9Oh/A3VU5kVO6XEeMrm+bJvI23ejSQiot6OA7JqwM/xnSbNNxo+o1tNRw0V1xXpDbR1yffyf3zBFcqoFrxew8TeTfdh5c+YSD5wQ7pj5g2LKjrjKNoGX8jWlpg4NUnKZsrI1HDxsl9QT0QqCagcKzigKr8csHqlOi5aA+jYFKnYpHvo9HQ1THnKKed52VcRFiY4LIZ3HK2GFfkOZ1Jb5w3Hx0MSJQEfWSkUlcyXLoeeU00lphZRWUVpMwQ2YVWxhjJjHkhLtQl0eZyYhDQKYYrjxW8p5g="
+    secret_access_key:
+      - secure: "iAEwyqFNFgT/kby2XtS8vCQ5eADWCIe+tKekma35TceZp8zDkhyGjSNbvGqwC7Q3OwNrJ65Slceafq5ztzqjpZ6tPUbT66UaV7c6GLCbdnwstADfiU006BhNs9BIeUU0TOQD+9zXd/NWK9zTpkDIWgNe9TeEn+otxmVZxErHfGaugD4yAx1vopuZbbT9KpMTs5hsgBhqOyNPCbYoAv6O9kKaTDCwPqUDgnnBc0Ede/DpGq9SHceywl37qWRGCqmmNias3lwdWKV02rLRUCvdRlXyo4jihxcbJHE4PJ9RtRQcrpIc6obxR0DB0oDC+gbAIKsqGTgSBuNLC5MB35kouKCNXUO56zXofQLgtLnaeLqSJPUSiaEXxz2IW4HJM2vQ+HxD1JcWOyAlQyR8gLlGYiNeebsD47cCg4yTrdc67oZKJpyPeQ8mVz323+lP8m3LXaQqIsfB2zBwAKxP5b7UdcRuOR+0Xyur0lfBjM+qo2YjhvGxZSHn8keEFk6/1xXZdv4Cz9Xpi0w4TLLPaTx0k5mDZi76xHotuCHkxW3/MZF+KYtOA+mWTaSTgoWfHa4vrHI+RAEo/ntzoUaDU97rIC4vcXqTceSkk/eT6vm4cBFxrK2mzk8upP5wD0zm1jlxMFGdiswmQpNunUzDs6+jdLjulPA7RMzVDzKynG5fBN4="
+    bucket: "read-dev.bibletranslationtools.org"
+    edge: true
+    region: us-east-2
+    local_dir: _site
+    skip_cleanup: true
+    on:
+      repo: WycliffeAssociates/read.bibletranslationtools.org
+      branch: develop
+  - provider: s3
+    access_key_id:
+      - secure: "fmJoTrT186uPYLwDzr2OzIqFVn94TPGBFzWVensUMzg1u3QqiFGgSfTSNmYqqLmnmiockBgfvnCAVjiVnxyyEdpwpX0IfbSoNbufxzG+iLYytjYRMZfJD0PUFNqmxm9briSdTWupkhfl6UgPbmBpjltMQtWa6qejHOJM9xXnxDe2gKZHEUovlwmKSIMlWUh2bHiU/y8tPoBWeZ6ftQoq0w2jGQjWz7wlrJ4621PkyVRbz7qBQ5J/HocIKD4aeeMqIDo55ZkPo0QzkMQTUC8aD2qV8h3HjzUbpE1Z03hTfQOZNaVKYNZtS41xOonjmfhuZF5A/hZ5BUQnHc3ESJ/RtzmXDhlhgab5HUr6FCvjHeMvisCaqkJfm8JNadYM+9AY++IsmrO5rzz85z9Oh/A3VU5kVO6XEeMrm+bJvI23ejSQiot6OA7JqwM/xnSbNNxo+o1tNRw0V1xXpDbR1yffyf3zBFcqoFrxew8TeTfdh5c+YSD5wQ7pj5g2LKjrjKNoGX8jWlpg4NUnKZsrI1HDxsl9QT0QqCagcKzigKr8csHqlOi5aA+jYFKnYpHvo9HQ1THnKKed52VcRFiY4LIZ3HK2GFfkOZ1Jb5w3Hx0MSJQEfWSkUlcyXLoeeU00lphZRWUVpMwQ2YVWxhjJjHkhLtQl0eZyYhDQKYYrjxW8p5g="
+    secret_access_key:
+      - secure: "iAEwyqFNFgT/kby2XtS8vCQ5eADWCIe+tKekma35TceZp8zDkhyGjSNbvGqwC7Q3OwNrJ65Slceafq5ztzqjpZ6tPUbT66UaV7c6GLCbdnwstADfiU006BhNs9BIeUU0TOQD+9zXd/NWK9zTpkDIWgNe9TeEn+otxmVZxErHfGaugD4yAx1vopuZbbT9KpMTs5hsgBhqOyNPCbYoAv6O9kKaTDCwPqUDgnnBc0Ede/DpGq9SHceywl37qWRGCqmmNias3lwdWKV02rLRUCvdRlXyo4jihxcbJHE4PJ9RtRQcrpIc6obxR0DB0oDC+gbAIKsqGTgSBuNLC5MB35kouKCNXUO56zXofQLgtLnaeLqSJPUSiaEXxz2IW4HJM2vQ+HxD1JcWOyAlQyR8gLlGYiNeebsD47cCg4yTrdc67oZKJpyPeQ8mVz323+lP8m3LXaQqIsfB2zBwAKxP5b7UdcRuOR+0Xyur0lfBjM+qo2YjhvGxZSHn8keEFk6/1xXZdv4Cz9Xpi0w4TLLPaTx0k5mDZi76xHotuCHkxW3/MZF+KYtOA+mWTaSTgoWfHa4vrHI+RAEo/ntzoUaDU97rIC4vcXqTceSkk/eT6vm4cBFxrK2mzk8upP5wD0zm1jlxMFGdiswmQpNunUzDs6+jdLjulPA7RMzVDzKynG5fBN4="
+    bucket: "read.bibletranslationtools.org"
+    edge: true
+    region: us-east-2
+    local_dir: _site
+    skip_cleanup: true
+    on:
+      repo: WycliffeAssociates/read.bibletranslationtools.org
+      branch: master
