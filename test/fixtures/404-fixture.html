@@ -19,14 +19,17 @@
                     <script>
                         function getLink() {
                             var url = window.location.href;
-                            var newUrl = url.toLowerCase().replace("live.door43.org/u", "git.door43.org");
+                            var newUrl = url.replace(/read.bibletranslationtools.org\/u/i,
+                                "content.bibletranslationtools.org");
                             var output = '<a href="' + newUrl + '">' + newUrl + '</a>'
                             return output;
                         }
                     </script>
 
-                    <p>This probably means we could not convert the content<br />
-                        from </p>
+                    <p>
+                        This probably means we could not convert the content<br />
+                        from <script>document.write(getLink());</script>
+                    </p>
 
                 </div>
             </div>
