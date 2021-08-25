@@ -71,29 +71,49 @@
                 </div>
                 <div id="right-sidebar" class="col-md-3 sidebar" role="complementary">
                     {% raw %}
-                        {% if scriptureNavigation != null %}
-                        <nav class="hidden-print hidden-xs hidden-sm content-nav" id="right-sidebar-nav">
-                            <ul id="sidebar-nav" class="nav nav-stacked books panel-group">
-                                {% for book in scriptureNavigation %}
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse{{book.abbreviation}}">{{book.title}}</a>
-                                            </h4>
-                                        </div>
-                                        
-                                        <div id="collapse{{book.abbreviation}}" class="panel-collapse collapse{% if book.abbreviation == currentBook %} in{% endif %}">
-                                            <ul class="panel-body chapters">
-                                                {% for chapter in book.chapters %}
-                                                    <li class="chapter"><a href="{{book.abbreviation}}.html#chapter-{{chapter.number}}">{{chapter.title}}</a></li>
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
+                    {% if scriptureNavigation != null %}
+                    <nav class="hidden-print hidden-xs hidden-sm content-nav" id="right-sidebar-nav">
+                        <ul id="sidebar-nav" class="nav nav-stacked books panel-group">
+                            {% for book in scriptureNavigation %}
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#sidebar-nav" href="#collapse{{book.abbreviation}}">{{book.title}}</a>
+                                        </h4>
                                     </div>
-                                {% endfor %}
-                            </ul>
-                        </nav>
-                        {% endif %}
+                                    
+                                    <div id="collapse{{book.abbreviation}}" class="panel-collapse collapse{% if book.abbreviation == currentBook %} in{% endif %}">
+                                        <ul class="panel-body chapters">
+                                            {% for chapter in book.chapters %}
+                                                <li class="chapter"><a href="{{book.file}}#{{chapter.id}}">{{chapter.title}}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    {% if wordsnavigation != null %}
+                    <nav class="hidden-print hidden-xs hidden-sm content-nav" id="right-sidebar-nav">
+                      <ul class="nav nav-stacked">
+                        {% for category in wordsnavigation %}
+                          {% if category.slug == currentslug %}
+                            <li class="active"><a href="#tw-section-{{category.slug}}">{{category.title}}</a>
+                          {% else %}
+                            <li><a href="{{category.slug}}.html#tw-section-{{category.slug}}">{{category.title}}</a>
+                          {% endif %}
+                        <a class="content-nav-expand collapsed" data-target="#section-{{category.slug}}-sub" data-toggle="collapse" href="#"></a>
+                          <ul class="collapse" id="section-{{category.slug}}-sub">
+                            {% for word in category.words %}
+                              <li><a href="{{category.slug}}.html#{{word.slug}}">{{word.title}}</a></li>
+                            {% endfor %}
+                          </ul>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </nav>
+                    {% endif %}
                     {% endraw %}
                 </div>
             </div>
