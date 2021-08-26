@@ -463,7 +463,6 @@ table#hrdftrtbl {
 
 .versemarker {
   font-size: 0.5em;
-  vertical-align: top;
 }
 
 [class^="poetry-"] .versemarker {
@@ -550,17 +549,13 @@ table#hrdftrtbl {
 .descriptive-text {
   font-style: italic;
   font-size: 85%;
+  margin-bottom: 1em;
 }
 
 .word-entry {
   font-size: 1em;
 }
 
-/* Cross Reference */
-.caller {
-  font-size: 0.5em;
-  vertical-align: top;
-}
 
 .cross-ref-quote {
   font-style: italic;
