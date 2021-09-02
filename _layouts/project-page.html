@@ -51,7 +51,7 @@
             <span id="last-updated" class="hide-on-pinned">Updated ? hours ago</span>
             <span id="views"><i class="fa fa-eye"></i></span>
             <span id="num-of-views" dir="ltr"># views</span>
-            <a id="see-on-dcs" href="{% raw %} { sourceLink } {% endraw %}" target="_blank">See on WACS</a>
+            <a id="see-on-dcs" href="{% raw %}{{sourceLink}}{% endraw %}" target="_blank">See on WACS</a>
         </div>
     </div>
 </header>
@@ -114,6 +114,33 @@
                       </ul>
                     </nav>
                     {% endif %}
+                    {% if translationManualNavigation %}
+                    <nav class="hidden-print hidden-xs hidden-sm content-nav" id="right-sidebar-nav">
+                      <ul class="nav nav-stacked">
+                        {% for section in translationManualNavigation %}
+                        <h4><a href="{{section.fileName}}">{{section.title}}</a></h4>
+                        {% if section.fileName == currentPage %}
+                            {% for nav in section.navigation %}
+                              <li>
+                              <a href="#{{nav.slug}}">{{nav.title}}</a>
+                              {% if nav.hasChildren %}
+                              <a href="#" data-target="#{{forloop.index}}-sub" data-toggle="collapse" class="content-nav-expand collapsed"></a>
+                              <ul id="{{forloop.index}}-sub" class="collapse">
+                              {% endif %}
+                              {% if nav.lastChild %}
+                                  </li>
+                                  </ul>
+                              {% endif %}
+                              {% if !nav.hasChildren %}
+                              </li>
+                              {% endif %}
+                            </li>
+                            {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </nav>
+                    {% endif%}
                     {% endraw %}
                 </div>
             </div>
