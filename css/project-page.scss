@@ -419,6 +419,11 @@ table#hrdftrtbl {
   float: left;
   margin-right: 0.25em;
 }
+.chaptermarker[dir="rtl"] {
+  float: right;
+  margin-left: 0.25em;
+  margin-right: auto;
+}
 
 /* Poetry */
 .poetry-1 {
