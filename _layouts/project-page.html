@@ -41,7 +41,12 @@
                         <button id="download_menu_button" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-cloud-download"></span><span class="hide-on-pinned"> Download</span>
                             <span class="caret"></span></button>
                         <ul class="dropdown-menu">
-                            <li><a type="submit" onclick="window.open(getDownloadUrl())"><span id="download_menu_source_item" class="glyphicon glyphicon-compressed"> Source</span></a></li>
+                            <li><a type="submit" href="{% raw %}{{sourceLink}}/archive/master.zip{% endraw %}" target="_blank"><span id="download_menu_source_item" class="glyphicon glyphicon-compressed"> Source</span></a></li>
+                            {% raw %}
+                                {% for item in additionalDownloadLinks %}
+                                    <li><a type="submit" href="{{item.link}}" target="_blank"><span id="download_menu_source_item" class="glyphicon glyphicon-compressed">{{item.title}}</span></a></li>
+                                {% endfor %}
+                            {% endraw %}
                         </ul>
                     </span>
                 </span>

@@ -163,7 +163,6 @@ function processBuildLogJson(myLog, $downloadMenuButton, $buildStatusIcon, $last
 
     saveDownloadLink(myLog);
     setDownloadButtonState($downloadMenuButton);
-    updateTextForDownloadItem(myLog.input_format);
     updateConversionStatusOnPage($buildStatusIcon, myLog);
     $revisions.empty();
 }
