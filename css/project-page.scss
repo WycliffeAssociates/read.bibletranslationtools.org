@@ -248,355 +248,315 @@ body.bible, body.tq, body.tn {
   }
 }
 body.bible{
-/* Format Styles */
-.small-text {
-  font-size: 16px;
-}
-
-.med-text {
-  font-size: 22px;
-}
-
-.large-text {
-  font-size: 29px;
-}
-
-.sectionbreak {
-  page-break-before: always;
-  clear: both;
-}
-
-.pagebreak {
-  page-break-after: auto;
-  page-break-after: always;
-}
-
-@media print {
-  .pagebreak {
-      page-break-after: always;
+  /* Format Styles */
+  .small-text {
+    font-size: 16px;
   }
-  /* page-break-after works, as well */
+
+  .med-text {
+    font-size: 22px;
+  }
+
+  .large-text {
+    font-size: 29px;
+  }
+
   .sectionbreak {
-      page-break-before: always;
-      clear: both;
+    page-break-before: always;
+    clear: both;
+  }
+
+  .pagebreak {
+    page-break-after: auto;
+    page-break-after: always;
+  }
+
+  @media print {
+    .pagebreak {
+        page-break-after: always;
+    }
+    /* page-break-after works, as well */
+    .sectionbreak {
+        page-break-before: always;
+        clear: both;
+    }
+  }
+
+  .rtl-direct {
+    direction: rtl;
+  }
+
+  @page FooterSection {
+    size: 8.5in 11.0in;
+    margin: 1.0in 1.0in 1.0in 1.0in;
+    mso-header-margin: .5in;
+    mso-footer-margin: .5in;
+    mso-header: h1;
+    mso-footer: f1;
+    mso-first-header: h1;
+    mso-first-footer: f1;
+    mso-paper-source: 0;
+    mso-page-numbers: 1;
+  }
+
+  table#hrdftrtbl {
+    margin: 0in 0in 0in 900in;
+    width: 900px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  /* Marker Specific Styling */
+
+  /* Header */
+  .header {
+    margin-top: 1em;
+    font-size: 1.5em;
+    font-weight: bold;
+    display: inline-block;
+  }
+
+  .acrostic-heading {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  /* Major Title */
+  .majortitle-1 {
+    display: none;
+    font-size: inherit;
+  }
+
+  .majortitle-2 {
+    display: none;
+    font-size: inherit;
+  }
+
+  .majortitle-3 {
+    display: none;
+    font-size: inherit;
+  }
+
+  /* Footnotes */
+  .footnotecaller {
+    font-size: 0.5em;
+    vertical-align: top;
+  }
+
+  .footnotes {
+    font-size: 0.75em;
+  }
+
+  .footnote-header {
+    font-size: 1.2em;
+  }
+
+  .footnote-alternate-translation {
+    font-style: italic;
+  }
+
+  /* Chapter */
+  .chapter {
+    margin-top: 1em;
+    font-size: inherit;
+    position: relative;
+  }
+
+  .chaptermarker {
+    font-size: 1.5em;
+    font-weight: bold;
+    display: block;
+    float: left;
+    margin-inline-end: 0.25em;
+  }
+
+  /* Poetry */
+  .poetry-1 {
+    font-size: inherit;
+    line-break: normal;
+    display: block;
+    margin-inline-start: 1.5em;
+  }
+
+  .poetry-2 {
+    font-size: inherit;
+    line-break: normal;
+    display: block;
+    margin-inline-start: 3em;
+  }
+
+  .poetry-3 {
+    font-size: inherit;
+    line-break: normal;
+    display: block;
+    margin-inline-start: 4.5em;
+  }
+
+  .poetry-outdent-1 {
+    margin-inline-start: -1.5em;   
+  }
+
+  .poetry-outdent-2 {
+    margin-inline-start: -3em;
+  }
+
+  .selah-text {
+    font-style: italic;
+    text-align: end;
+  }
+
+  /* Verse */
+  .verse {
+    font-size: inherit;
+    font-weight: normal;
+  }
+
+  .versemarker {
+    font-size: 0.5em;
+  }
+
+  [class^="poetry-"] .versemarker {
+    position: absolute;
+    left: 0;
+    top: unset;
+    margin-top: 0.5em;
+  }
+
+  .closing {
+    text-align: end;
+  }
+
+  .reference {
+    font-style: italic;
+  }
+
+  /* Section */
+  .sectionhead-1 {
+    margin-top: 2em;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .sectionhead-2 {
+    margin-top: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
+    display: block;
+  }
+
+  .sectionhead-3 {
+    margin-top: 1em;
+    font-size: 1.05em;
+    font-weight: bold;
+    display: block;
+  }
+
+
+  /* List */
+  .list-1 {
+    line-break: normal;
+    display: block;
+    text-indent: 0px !important;
+  }
+
+  .list-2 {
+    line-break: normal;
+    display: block;
+    text-indent: 30px !important;
+  }
+
+  .list-3 {
+    line-break: normal;
+    display: block;
+    text-indent: 50px !important;
+  }
+
+  /* Special Strings */
+  .quoted-book {
+    font-style: italic;
+  }
+
+  .additions {
+    font-style: italic;
+  }
+
+  .transliterated {
+    font-style: italic;
+  }
+
+  .small-caps {
+    text-transform: uppercase;
+    font-size: 0.75em;
+  }
+
+  .center-paragraph {
+    text-align: center;
+  }
+
+  .descriptive-text {
+    font-style: italic;
+    font-size: 85%;
+    margin-bottom: 1em;
+  }
+
+  .word-entry {
+    font-size: 1em;
+  }
+
+
+  .cross-ref-quote {
+    font-style: italic;
+  }
+
+  .cross-ref {
+    font-weight: bold;
+  }
+
+  .cross-header {
+    font-size: 1.2em;
+  }
+
+  .toc2-ref {
+    display: inline;
+    visibility: hidden;
+  }
+
+  /* Table Markers */
+  .table-block{
+    width:50%;
+  }
+
+  .table-head {
+    font-style: italic;
+  }
+
+  .table-head-right {
+    font-style: italic;
+    text-align: right;
+  }
+
+
+  .table-cell-right {
+    text-align: right;
   }
 }
-
-.single-space {
-  line-height: 1;
+html[dir="rtl"]{
+  body.bible{
+    .chaptermarker {
+      float: right;
+    }
+    [class^="poetry-"] .versemarker {
+      right: 0;
+      left: unset;
+    }
+  }
 }
-
-.one-half-space {
-  line-height: 150%;
-}
-
-.double-space {
-  line-height: 2;
-}
-
-.two-half-space {
-  line-height: 250%;
-}
-
-.triple-space {
-  line-height: 3;
-}
-
-.justified {
-  text-align: justify;
-  text-justify: inter-word;
-}
-
-.right-align {
-  text-align: right;
-}
-
-.center-align {
-  text-align: center;
-}
-
-.rtl-direct {
-  direction: rtl;
-}
-
-@page FooterSection {
-  size: 8.5in 11.0in;
-  margin: 1.0in 1.0in 1.0in 1.0in;
-  mso-header-margin: .5in;
-  mso-footer-margin: .5in;
-  mso-header: h1;
-  mso-footer: f1;
-  mso-first-header: h1;
-  mso-first-footer: f1;
-  mso-paper-source: 0;
-  mso-page-numbers: 1;
-}
-
-div.one-column {
-  column-count: 1;
-}
-
-div.two-column {
-  column-count: 2;
-}
-
-p.MsoFooter, li.MsoFooter, div.MsoFooter {
-  margin: 0in;
-  margin-bottom: .0001pt;
-  font-size: 12.0pt;
-}
-
-table#hrdftrtbl {
-  margin: 0in 0in 0in 900in;
-  width: 900px;
-  height: 1px;
-  overflow: hidden;
-}
-
-/* Marker Specific Styling */
-
-/* Header */
-.header {
-  margin-top: 1em;
-  font-size: 1.5em;
-  font-weight: bold;
-  display: inline-block;
-}
-
-.acrostic-heading {
-  display: block;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 2em;
-  margin-bottom: 1em;
-}
-
-/* Major Title */
-.majortitle-1 {
-  display: none;
-  font-size: inherit;
-}
-
-.majortitle-2 {
-  display: none;
-  font-size: inherit;
-}
-
-.majortitle-3 {
-  display: none;
-  font-size: inherit;
-}
-
-/* Footnotes */
-.footnotecaller {
-  font-size: 0.5em;
-  vertical-align: top;
-}
-
-.footnotes {
-  font-size: 0.75em;
-}
-
-.footnote-header {
-  font-size: 1.2em;
-}
-
-.footnote-alternate-translation {
-  font-style: italic;
-}
-
-/* Chapter */
-.chapter {
-  margin-top: 1em;
-  font-size: inherit;
-  position: relative;
-}
-
-.chaptermarker {
-  font-size: 1.5em;
-  font-weight: bold;
-  display: block;
-  float: left;
-  margin-right: 0.25em;
-}
-.chaptermarker[dir="rtl"] {
-  float: right;
-  margin-left: 0.25em;
-  margin-right: auto;
-}
-
-/* Poetry */
-.poetry-1 {
-  font-size: inherit;
-  line-break: normal;
-  display: block;
-  margin-left: 1.5em;
-}
-
-.poetry-2 {
-  font-size: inherit;
-  line-break: normal;
-  display: block;
-  margin-left: 3em;
-}
-
-.poetry-3 {
-  font-size: inherit;
-  line-break: normal;
-  display: block;
-  margin-left: 4.5em;
-}
-
-.poetry-outdent-1 {
-  margin-left: -1.5em;   
-}
-
-.poetry-outdent-2 {
-  margin-left: -3em;
-}
-
-.selah-text {
-  font-style: italic;
-  text-align: right;
-}
-
-/* Verse */
-.verse {
-  font-size: inherit;
-  font-weight: normal;
-}
-
-.versemarker {
-  font-size: 0.5em;
-}
-
-[class^="poetry-"] .versemarker {
-  position: absolute;
-  left: 0;
-  top: unset;
-  margin-top: 0.5em;
-}
-
-.closing {
-  text-align: right;
-}
-
-.reference {
-  font-style: italic;
-}
-
-/* Section */
-.sectionhead-1 {
-  margin-top: 2em;
-  font-size: 1.2em;
-  font-weight: bold;
-  display: block;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.sectionhead-2 {
-  margin-top: 1em;
-  font-size: 1.1em;
-  font-weight: bold;
-  display: block;
-}
-
-.sectionhead-3 {
-  margin-top: 1em;
-  font-size: 1.05em;
-  font-weight: bold;
-  display: block;
-}
-
-
-/* List */
-.list-1 {
-  line-break: normal;
-  display: block;
-  text-indent: 0px !important;
-}
-
-.list-2 {
-  line-break: normal;
-  display: block;
-  text-indent: 30px !important;
-}
-
-.list-3 {
-  line-break: normal;
-  display: block;
-  text-indent: 50px !important;
-}
-
-/* Special Strings */
-.quoted-book {
-  font-style: italic;
-}
-
-.additions {
-  font-style: italic;
-}
-
-.transliterated {
-  font-style: italic;
-}
-
-.small-caps {
-  text-transform: uppercase;
-  font-size: 0.75em;
-}
-
-.center-paragraph {
-  text-align: center;
-}
-
-.descriptive-text {
-  font-style: italic;
-  font-size: 85%;
-  margin-bottom: 1em;
-}
-
-.word-entry {
-  font-size: 1em;
-}
-
-
-.cross-ref-quote {
-  font-style: italic;
-}
-
-.cross-ref {
-  font-weight: bold;
-}
-
-.cross-header {
-  font-size: 1.2em;
-}
-
-.toc2-ref {
-  display: inline;
-  visibility: hidden;
-}
-
-/* Table Markers */
-.table-block{
-  width:50%;
-}
-
-.table-head {
-  font-style: italic;
-}
-
-.table-head-right {
-  font-style: italic;
-  text-align: right;
-}
-
-
-.table-cell-right {
-  text-align: right;
-}}
 
 /**
  * Style for tA project pages
