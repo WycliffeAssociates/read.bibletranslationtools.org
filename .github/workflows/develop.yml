@@ -7,6 +7,10 @@ on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   push:
     branches: [ develop, rs/new-pipeline ]
+env:
+  STORAGEACCOUNTNAME: catalogoutputdev
+  TEMPLATECONTAINER: templates
+  WEBCONTAINER: $web
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,9 +23,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: azure/login@v1
+        with:
+          creds: ${{secrets.AZUREDEPLOYKEY}}
 
       # Runs a single command using the runners shell
       - name: Install depencies
         run: sudo apt-get update && export DEBIAN_FRONTEND=noninteractive && sudo apt-get -y install ruby ruby-dev build-essential zlib1g-dev && sudo gem install bundler
       - name: Run build.sh
         run: chmod u+x ./build.sh && ./build.sh
+      - name: Upload template
+        uses: azure/CLI@v1
+        with: inlineScript: |
+          az storage blob upload-batch --acount-name {{env.STORAGEACCOUNTNAME}} --auth-mode key -d {{env.TEMPLATECONTAINER}} -s "_site/templates"
