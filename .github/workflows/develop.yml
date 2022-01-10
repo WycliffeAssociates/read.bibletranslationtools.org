@@ -44,4 +44,4 @@ jobs:
         uses: azure/CLI@v1
         with: 
           inlineScript: |
-            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s ${{env.DEPLOYDIR}}
+            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d "${{env.WEBCONTAINER}}" -s ${{env.DEPLOYDIR}}
