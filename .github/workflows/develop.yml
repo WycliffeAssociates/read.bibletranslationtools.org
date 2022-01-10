@@ -24,4 +24,4 @@ jobs:
       - name: Install depencies
         run: sudo apt-get update && export DEBIAN_FRONTEND=noninteractive && sudo apt-get -y install ruby ruby-dev build-essential zlib1g-dev && sudo gem install bundler
       - name: Run build.sh
-        run: build.sh
+        run: chmod u+x ./build.sh && ./build.sh
