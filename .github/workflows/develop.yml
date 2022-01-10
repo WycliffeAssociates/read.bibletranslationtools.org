@@ -8,9 +8,10 @@ on:
   push:
     branches: [ develop, rs/new-pipeline ]
 env:
-  STORAGEACCOUNTNAME: catalogoutputdev
-  TEMPLATECONTAINER: templates
+  STORAGEACCOUNTNAME: testpipelineoutput
+  TEMPLATECONTAINER: template
   WEBCONTAINER: $web
+  DEPLOYDIR: deploy
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -36,12 +37,11 @@ jobs:
         uses: azure/CLI@v1
         with: 
           inlineScript: |
-            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.TEMPLATECONTAINER}} -s "./_site/templates/*.html"
+            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.TEMPLATECONTAINER}} -s "./_site/templates/"
+      - name: Create deploy folder
+        run: mkdir ${{env.DEPLOYDIR}} && cp -r _site/css/ ${{env.DEPLOYDIR}} && cp -r _site/js/ ${{env.DEPLOYDIR}} && cp -r _site/fonts/ ${{env.DEPLOYDIR}} && cp _site/*.html ${{env.DEPLOYDIR}}
       - name: Upload resources
         uses: azure/CLI@v1
         with: 
           inlineScript: |
-            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "./_site/css"
-            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "./_site/fonts"
-            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "./_site/js"
-            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "./_site/index.html"
+            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s ${{env.DEPLOYDIR}}
