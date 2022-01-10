@@ -34,5 +34,6 @@ jobs:
         run: chmod u+x ./build.sh && ./build.sh
       - name: Upload template
         uses: azure/CLI@v1
-        with: inlineScript: |
-          az storage blob upload-batch --acount-name {{env.STORAGEACCOUNTNAME}} --auth-mode key -d {{env.TEMPLATECONTAINER}} -s "_site/templates"
+        with: 
+          inlineScript: |
+            az storage blob upload-batch --acount-name {{env.STORAGEACCOUNTNAME}} --auth-mode key -d {{env.TEMPLATECONTAINER}} -s "_site/templates"
