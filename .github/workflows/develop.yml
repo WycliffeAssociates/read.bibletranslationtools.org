@@ -36,4 +36,12 @@ jobs:
         uses: azure/CLI@v1
         with: 
           inlineScript: |
-            az storage blob upload-batch --acount-name {{env.STORAGEACCOUNTNAME}} --auth-mode key -d {{env.TEMPLATECONTAINER}} -s "_site/templates"
+            az storage blob upload-batch --acount-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.TEMPLATECONTAINER}} -s "_site/templates/*"
+      - name: Upload resources
+        uses: azure/CLI@v1
+        with: 
+          inlineScript: |
+            az storage blob upload-batch --acount-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "_site/css"
+            az storage blob upload-batch --acount-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "_site/fonts"
+            az storage blob upload-batch --acount-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "_site/js"
+            az storage blob upload-batch --acount-name ${{env.STORAGEACCOUNTNAME}} --auth-mode key -d ${{env.WEBCONTAINER}} -s "_site/index.html"
