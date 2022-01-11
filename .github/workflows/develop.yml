@@ -52,7 +52,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az cdn endpoint purge --content-paths  "/*" --profile-name ${{CDNPROFILENAME}} --name "${{CDNENDPOINT}}" --resource-group "${{CDNRESOURCEGROUP}}"
+            az cdn endpoint purge --content-paths  "/*" --profile-name ${{env.CDNPROFILENAME}} --name "${{env.CDNENDPOINT}}" --resource-group "${{env.CDNRESOURCEGROUP}}"
       - name: logout
         run: |
               az logout
