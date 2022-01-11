@@ -6,7 +6,7 @@ name: Upload develop changes to Azure Storage
 on:
   # Triggers the workflow on push or pull request events but only for the develop branch
   push:
-    branches: [ develop, rs/new-pipeline ]
+    branches: [ develop ]
 env:
   STORAGEACCOUNTNAME: testpipelineoutput
   TEMPLATECONTAINER: template
