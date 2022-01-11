@@ -10,7 +10,7 @@ on:
 env:
   STORAGEACCOUNTNAME: testpipelineoutput
   TEMPLATECONTAINER: template
-  WEBCONTAINER: test
+  WEBCONTAINER: \$web # This forward slash is needed because of the way Azure CLI is working with stuff
   DEPLOYDIR: deploy
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
