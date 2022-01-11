@@ -10,9 +10,18 @@ _StatHat.push(['_setUser', 'NzMzIAPKpWipEWR8_hWIhqlgmew~']);
   s.parentNode.insertBefore(sh, s);
 })();
 
+EnsureTrailingSlash();
+
 $(document).ready(function(){
     onProjectPageLoaded();
 });
+
+
+function EnsureTrailingSlash(){
+    if (!window.location.pathname.endsWith(".html") && !window.location.pathname.endsWith("/")){
+        window.location.pathname += "/";
+    }
+}
 
 /**
  * Called to initialize the project page
@@ -154,7 +163,6 @@ function processBuildLogJson(myLog, $downloadMenuButton, $buildStatusIcon, $last
 
     saveDownloadLink(myLog);
     setDownloadButtonState($downloadMenuButton);
-    updateTextForDownloadItem(myLog.input_format);
     updateConversionStatusOnPage($buildStatusIcon, myLog);
     $revisions.empty();
 }
