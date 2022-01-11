@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Upload changes to Azure Storage
+name: Upload develop changes to Azure Storage
 
 # Controls when the workflow will run
 on:
@@ -10,8 +10,11 @@ on:
 env:
   STORAGEACCOUNTNAME: testpipelineoutput
   TEMPLATECONTAINER: template
-  WEBCONTAINER: \$web # This forward slash is needed because of the way Azure CLI is working with stuff
+  WEBCONTAINER: $web
   DEPLOYDIR: deploy
+  CDNPROFILENAME: readdevbibletranslationtoolsorg
+  CDNENDPOINT: readdevbibletranslationtoolsorg
+  CDNRESOURCEGROUP: ScripturePipeline-Dev
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -42,6 +45,15 @@ jobs:
         run: mkdir ${{env.DEPLOYDIR}} && cp -r _site/css/ ${{env.DEPLOYDIR}} && cp -r _site/js/ ${{env.DEPLOYDIR}} && cp -r _site/fonts/ ${{env.DEPLOYDIR}} && cp _site/*.html ${{env.DEPLOYDIR}}
       - name: Upload resources
         uses: azure/CLI@v1
-        with: 
+        with: # The single quote around the -d option is needed because otherwise it fails on $web
           inlineScript: |
-            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode "key" -d "${{env.WEBCONTAINER}}" -s ${{env.DEPLOYDIR}}
+            az storage blob upload-batch --account-name ${{env.STORAGEACCOUNTNAME}} --auth-mode "key" -d '${{env.WEBCONTAINER}}' -s ${{env.DEPLOYDIR}}
+      - name: Purge CDN endpoint
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az cdn endpoint purge --content-paths  "/*" --profile-name ${{CDNPOFILENAME}} --name "${{CDNENDPOINT}}" --resource-group "${{CDNRESOURCEGROUP}}"
+      - name: logout
+        run: |
+              az logout
+        if: always()
