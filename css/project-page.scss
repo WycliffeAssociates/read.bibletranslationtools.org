@@ -640,18 +640,6 @@ body.ta {
       clear: both;
     }
 
-    blockquote {
-      padding: 0 15px;
-      color: #444;
-      border-left: 4px solid #ddd;
-      > :first-child {
-        margin-top: 0;
-      }
-      > :last-child {
-        margin-bottom: 0;
-      }
-    }
-
     table {
       overflow: auto;
       margin-left: auto;
