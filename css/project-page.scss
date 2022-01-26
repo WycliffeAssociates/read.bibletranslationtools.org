@@ -245,6 +245,18 @@ body.bible, body.tq, body.tn {
         }
       }
     }
+
+  }
+}
+body{
+  .content{
+    [id]::before {
+      content: '';
+      display: block;
+      height:      140px;
+      margin-top: -140px;
+      visibility: hidden;
+    }
   }
 }
 body.bible{
