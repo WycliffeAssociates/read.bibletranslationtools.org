@@ -745,7 +745,7 @@ function addPopupHandlers(element){
 }
 function popUpClick(source){
     console.log(source);
-    fetch(source.href.replace("popup://","") + ".html")
+    fetch(source.href.replace("popup://",""))
     .then(response =>{
         return response.text();
     })
