@@ -738,4 +738,25 @@ function checkForConversionRequested($conversion_requested) {
     }
 }
 
+function addPopupHandlers(element){
+    element.querySelectorAll("a[href*='popup://']").forEach((element) =>{
+        element.onclick = (e) => { e.preventDefault(); popUpClick(element)};
+    })
+}
+function popUpClick(source){
+    console.log(source);
+    fetch(source.href.replace("popup://","") + ".html")
+    .then(response =>{
+        return response.text();
+    })
+    .then(body =>{
+        var modal = document.getElementById("popup-modal");
+        var modalBody = modal.querySelector(".modal-body");
+        modalBody.innerHTML = body;
+        addPopupHandlers(modalBody);
+        $("#popup-modal").modal().modal("show");
+    })
+}
+
+addPopupHandlers(document);
 checkForConversionRequested($('h1.conversion-requested'));
