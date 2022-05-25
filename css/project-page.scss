@@ -9,9 +9,11 @@
 
 header {
     margin-bottom: 20px;
+    z-index: 2;
 
     #header-title {
         padding-bottom: 10px;
+        z-index: 3;
 
         h1 {
             margin: 0;
@@ -42,7 +44,15 @@ header {
                     color: #3ebcfe;
                 }
             }
+            #download_menu{
+              z-index: 4;
+            }
+            .dropdown{
+              z-index: 4;
+            }
             #print-button, #download_menu_button {
+              z-index: 3;
+              position: relative;
               background-color: white;
               color: #3ebcfe;
               border: none;
@@ -64,6 +74,11 @@ header {
             }
         }
     }
+}
+
+#outer-content{
+  position: relative;
+  z-index: 1;
 }
 
 #sub-header {
@@ -911,7 +926,6 @@ body.ta, body.tw {
 @media (min-width: 991px) {
   #pinned-header {
     width: 100%;
-    z-index: 100;
     background-color: #fff;
 
     &.pin-to-top {
