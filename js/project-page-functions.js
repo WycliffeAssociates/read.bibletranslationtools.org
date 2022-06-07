@@ -23,6 +23,41 @@ function EnsureTrailingSlash(){
     }
 }
 
+function RewriteRCLinkNames(){
+    var mapping = [];
+    var linksToGet = [];
+    document.querySelectorAll("a[data-is-rc-link]").forEach(function(element){
+        var rawLink = element.href;
+        var splitLink = rawLink.split("#");
+        var id = splitLink[1];
+        var link = splitLink[0].replace(".html", ".json");
+        mapping.push({
+            link,
+            element,
+            id
+        });
+        if (linksToGet.indexOf(link) == -1){
+            linksToGet.push(link);
+        }
+    });
+    linksToGet.forEach(function(link){
+        fetch(link).then(function(response){
+            return response.json();
+        }).then(function(data){
+            mapping.forEach(function(item){
+                if (item.link !== link){
+                    return;
+                }
+
+                if(data[item.id] !== undefined){
+                    item.element.innerHTML = data[item.id];
+                }
+            })
+        });
+    }
+    )
+}
+
 /**
  * Called to initialize the project page
  */
@@ -760,3 +795,4 @@ function popUpClick(source){
 
 addPopupHandlers(document);
 checkForConversionRequested($('h1.conversion-requested'));
+RewriteRCLinkNames()
