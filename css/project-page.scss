@@ -84,6 +84,7 @@ header {
 #sub-header {
     margin: 0 0 12px 35px;
     font-size: 16px;
+    z-index: 3;
 
     #last-updated {
         font-weight: 400;
@@ -1048,4 +1049,9 @@ body.ta, body.tw {
 .warning-button {
   cursor: pointer;
   box-shadow: 1px 3px 6px 1px rgba(0, 0, 0, 0.2);
+}
+
+#see-on-dcs{
+  position: relative;
+  z-index: 4;
 }
