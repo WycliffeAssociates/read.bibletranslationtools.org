@@ -6,6 +6,8 @@ develop | [![Build Status](https://travis-ci.org/unfoldingWord-dev/door43.org.sv
 
 # Notice: This has been replaced by the new reader and is no longer maintained.
 
+You can find the new reader here https://github.com/WycliffeAssociates/read.bibleineverylanguage.org
+
 This is the source for the read.BibleTranslationTools.org website.
 
 ## Project Overview
